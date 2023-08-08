@@ -88,8 +88,19 @@ Use <b>A</b>,<b>S</b>,<b>D</b>,<b>W</b> to control the game.
 <div id="gamediv">game</div>
 <canvas width="160" height="320" id="game"></canvas>
 </div>
+</center>
+If you want the source code for this variant, just download this page.
+It's at the end of the file.
+I modified it as follows:
++ Make the output pure text in a div instead of graphics in a canvas.
+  It resembles the original Tetris from Alexei Leonidowitsch Paschitnow.
++ Added points and line counter.
++ Added a preview of the next block.
++ It will speed up a little (2frames) every 10 lines made.
+Now the canvas is only used for the update loop and shows no
+graphics anymore. Except for the gameover message.
 
-</center><hr /><a name="elon"></a>
+<hr /><a name="elon"></a>
 Now about some space stuff. This is a short one and it
 raises more questions than it gives answers. So long:
 
@@ -167,8 +178,6 @@ It was released 5 days after <a href="tec9_02_2023_08_01.html">tec9 #2</a>.
 <hr />
 
 That's it for now.
-If you want the tetris source code, just download this page.
-It's at the end of the file.
 
 </pre>
 
@@ -192,11 +201,14 @@ It's at the end of the file.
 
 var score = 0;
 var lines = 0;
+var frames = 35;
+var framelines = 0;
+var level=0;
 var nexttetromino;
 
 
 function showScore() {
-	document.getElementById("tetrisscore").innerHTML=" "+score+" points<br />"+lines+" lines";
+	document.getElementById("tetrisscore").innerHTML="Level "+level+"<br />&nbsp;"+score+" points<br />"+lines+" lines";
 }
 
 function showNextTetromino()
@@ -293,7 +305,6 @@ function isValidMove(matrix, cellRow, cellCol) {
       }
     }
   }
-
   return true;
 }
 
@@ -320,6 +331,14 @@ function placeTetromino() {
       pt+=1;
       pt*=2;
       lines+=1;
+      framelines+=1;
+      // maybe speed up the game
+      if(framelines>=10 && frames>=12)
+      {
+		framelines=0;
+		level+=1;
+		frames-=2;
+      }
       // drop every row above this one
       for (let r = row; r >= 0; r--) {
         for (let c = 0; c < playfield[r].length; c++) {
@@ -496,13 +515,13 @@ function loop() {
   }
   txt+="%%%%%%%%%%%%%%%%%%%%%%</b>"
 
-document.getElementById("gamediv").innerHTML=txt;
+  document.getElementById("gamediv").innerHTML=txt;
 
   // draw the active tetromino
   if (tetromino) {
 
     // tetromino falls every 35 frames
-    if (++count > 35) {
+    if (++count > frames) {
       tetromino.row++;
       count = 0;
 
@@ -512,22 +531,6 @@ document.getElementById("gamediv").innerHTML=txt;
         placeTetromino();
       }
     }
-
-    context.fillStyle = colors[tetromino.name];
-///////////////////// old code
-   /* for (let row = 0; row < tetromino.matrix.length; row++) 
-    	{
-	      for (let col = 0; col < tetromino.matrix[row].length; col++) 
-	      {
-	        if (tetromino.matrix[row][col]) 
-	        {
-
-        	  // drawing 1 px smaller than the grid creates a grid effect
-	          context.fillRect((tetromino.col + col) * grid, (tetromino.row + row) * grid, grid-1, grid-1);
-	        }
-	      }
-	 }
-	*/
   }
 }
 
