@@ -91,14 +91,19 @@ Use <b>A</b>,<b>S</b>,<b>D</b>,<b>W</b> to control the game.
 </center>
 If you want the source code for this variant, just download this page.
 It's at the end of the file.
-I modified it as follows:
+
+I modified it as follows (from the source code above):
 + Make the output pure text in a div instead of graphics in a canvas.
   It resembles the original Tetris from Alexei Leonidowitsch Paschitnow.
+  Now the canvas is only used for the update loop and shows no graphics
+  anymore. Except for the gameover message.
+  Text graphics builds up "one consistent line of text", which then is
+  put into the div - instead of drawing the playfield and the actual
+  block separately.
 + Added points and line counter.
 + Added a preview of the next block.
 + It will speed up a little (2frames) every 10 lines made.
-Now the canvas is only used for the update loop and shows no
-graphics anymore. Except for the gameover message.
+
 
 <hr /><a name="elon"></a>
 Now about some space stuff. This is a short one and it
