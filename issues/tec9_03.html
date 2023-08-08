@@ -24,28 +24,29 @@
 	#gamescreen
 	{
 		position: relative;
-		border: 1px solid #00FF00;
+		border: 0px solid #00FF00;
 		width: 320px;
-		height:322px; 
+		height:330px; 
 	}
 	#game
 	{
 		position: absolute;
 		top:0px;
 		left: 0px;
+		border: 0px;
 	}
 	#gamediv
 	{
 		position: absolute;
-		bottom: 5px;
-		right: 5px;
-		font-size: 3pt;
+		top: 0px;
+		left: 0px;
+		font-size: 10pt;
 	}
 	#tetrisscore
 	{
 		position: absolute;
 		left: 170px;
-		top: 160px;
+		bottom: 10px;
 	}
 	#tetrisnext
 	{
@@ -83,9 +84,9 @@ Use <b>A</b>,<b>S</b>,<b>D</b>,<b>W</b> to control the game.
 <center>
 <a href="https://gist.github.com/straker/3c98304f8a6a9174efd8292800891ea1" target="_parent">S0urce C0de</a>
 <div id="gamescreen">
-<canvas width="160" height="320" id="game"></canvas>
 <div id="tetrisscore">points div</div><div id="tetrisnext">next</div>
 <div id="gamediv">game</div>
+<canvas width="160" height="320" id="game"></canvas>
 </div>
 
 </center><hr /><a name="elon"></a>
@@ -195,7 +196,7 @@ var nexttetromino;
 
 
 function showScore() {
-	document.getElementById("tetrisscore").innerHTML=""+score+" points<br />"+lines+" lines";
+	document.getElementById("tetrisscore").innerHTML=" "+score+" points<br />"+lines+" lines";
 }
 
 function showNextTetromino()
@@ -422,10 +423,10 @@ const tetrominos = {
 const colors = {
   'I': 'cyan',
   'O': 'yellow',
-  'T': 'purple',
-  'S': 'green',
+  'T': '#aa00FF',
+  'S': '#66ff66',
   'Z': 'red',
-  'J': 'blue',
+  'J': '#6699FF',
   'L': 'orange'
 };
 
@@ -447,32 +448,47 @@ function loop() {
     txt+="%";	
     for (let col = 0; col < 10; col++) 
     {
-	/*if(row>=tetromino.row && row<tetromino.matrix.length)
+	// maybe draw [] for actual tetromino
+	tetro=0;
+	if(row>=tetromino.row && row-tetromino.row<tetromino.matrix.length)
 	{
-		if(col>=tetromino.col && col<tetromino.matrix[0].length)
+		if(col>=tetromino.col && col-tetromino.col<tetromino.matrix[0].length)
 		{
+			color = colors[tetromino.name]
 			tetro=1;
 			if(tetromino.matrix[row-tetromino.row][col-tetromino.col])
 			{
-				txt+="<b>[]</b>";
+				txt+='<font color="'+color+'">[]</font>';
 			}else{
-				txt+="<b>. </b>";
+				if(playfield[row][col])
+				{
+					// maybe draw part of the playfield here
+			      		const name = playfield[row][col];
+					color = colors[name];
+					txt+='<font color="'+color+'">[]</font>';
+				}else{
+					// else draw "nothing"
+					txt+=".&nbsp";
+				}
 			}
 		}
-	}*/
+	}
 
+	// else draw playfield
 	if(!tetro)
 	{
 		if (playfield[row][col]) 
 		{
 	      		const name = playfield[row][col];
-		        context.fillStyle = colors[name];
+		        //context.fillStyle = colors[name];
 
         		// drawing 1 px smaller than the grid creates a grid effect
-	        	context.fillRect(col * grid, row * grid, grid-1, grid-1);
+		        // context.fillRect(col * grid, row * grid, grid-1, grid-1);
+			// draw a block
 			txt+="<font color=\""+colors[name]+"\">[]</font>";
 		}else{
-			txt+=". ";
+			// draw no block
+			txt+=".&nbsp";
 		}
 	}
     }
@@ -498,19 +514,20 @@ document.getElementById("gamediv").innerHTML=txt;
     }
 
     context.fillStyle = colors[tetromino.name];
-/////////////////////
-    for (let row = 0; row < tetromino.matrix.length; row++) 
-    {
-      for (let col = 0; col < tetromino.matrix[row].length; col++) 
-      {
-        if (tetromino.matrix[row][col]) 
-        {
+///////////////////// old code
+   /* for (let row = 0; row < tetromino.matrix.length; row++) 
+    	{
+	      for (let col = 0; col < tetromino.matrix[row].length; col++) 
+	      {
+	        if (tetromino.matrix[row][col]) 
+	        {
 
-          // drawing 1 px smaller than the grid creates a grid effect
-          context.fillRect((tetromino.col + col) * grid, (tetromino.row + row) * grid, grid-1, grid-1);
-        }
-      }
-    }
+        	  // drawing 1 px smaller than the grid creates a grid effect
+	          context.fillRect((tetromino.col + col) * grid, (tetromino.row + row) * grid, grid-1, grid-1);
+	        }
+	      }
+	 }
+	*/
   }
 }
 
