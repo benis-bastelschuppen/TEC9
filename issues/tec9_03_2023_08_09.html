@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TEC-9 0x03</title>
+	<meta charset="UTF-8" />
+	<style>
+	body
+	{
+		background-color: #333333;
+		color: #3366FF;
+		font-family: Courier, monospace;
+		font-size: 16pt;
+	}
+	h1, h3 
+	{
+		font-family: Courier, monospace;
+		color: #6699FF;
+	}
+	hr {color: #3366FF;}
+	b {color: #6699FF;}
+	canvas {border: 1px solid #3366FF;}
+	a, a.visited {color:#FFAA00;}
+
+	#gamescreen
+	{
+		position: relative;
+		border: 0px solid #00FF00;
+		width: 320px;
+		height:330px; 
+	}
+	#game
+	{
+		position: absolute;
+		top:0px;
+		left: 0px;
+		border: 0px;
+	}
+	#gamediv
+	{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		font-size: 10pt;
+	}
+	#tetrisscore
+	{
+		position: absolute;
+		left: 170px;
+		bottom: 10px;
+	}
+	#tetrisnext
+	{
+		position: absolute;
+		top: 50px;
+		right: 50px;
+	}
+	</style>
+</head>
+<body>
+<pre>
+<center>
+############################
+#    ,-------------__      #
+#   {_   __<a href="https://benis-bastelschuppen.github.io/TEC9" target="_parent">TEC-9</a>___--  *   #
+#    /  /,_|   |/          #
+#   /__/   |<b>#03</b>|           #
+#           | |            #
+#           | |            #
+#           |_|            #
+#                          #
+# by benobi     2023-08-09 #
+############################
+<a href="#tetris">Tetris</a>
+<a href="#elon">Star- & Neura-Link</a>
+<a href="#bj">DARPAs BlackJack</a>
+<a href="#con">My Concerns</a>
+</center>
+<hr />
+First of all a little bit of fun.
+Good ol' Tetris, still one of the best games ever.
+<a name="tetris"></a>
+Reload the page to start new.
+Use <b>A</b>,<b>S</b>,<b>D</b>,<b>W</b> to control the game.
+<center>
+<a href="https://gist.github.com/straker/3c98304f8a6a9174efd8292800891ea1" target="_parent">S0urce C0de</a>
+<div id="gamescreen">
+<div id="tetrisscore">points div</div><div id="tetrisnext">next</div>
+<div id="gamediv">game</div>
+<canvas width="160" height="320" id="game"></canvas>
+</div>
+</center>
+If you want the source code for this variant, just download this page.
+It's at the end of the file.
+
+I modified it as follows (from the source code above):
++ Make the output pure text in a div instead of graphics in a canvas.
+  It resembles the original Tetris from Alexei Leonidowitsch Paschitnow.
+  Now the canvas is only used for the update loop and shows no graphics
+  anymore. Except for the gameover message.
+  Text graphics builds up "one consistent line of text", which then is
+  put into the div - instead of drawing the playfield and the actual
+  block separately.
++ Added points and line counter.
++ Added a preview of the next block.
++ It will speed up a little (2frames) every 10 lines made.
+
+
+<hr /><a name="elon"></a>
+Now about some space stuff. This is a short one and it
+raises more questions than it gives answers. So long:
+
+What is Elon Musk up to? He founded Neuralink and Starlink.
+Is there a connection between them?
+
+Starlink is a global satellite network that aims to bring 
+high-speed internet to the most remote regions of the world.
+However, it is also available in well-covered countries
+like Switzerland (where it was available @ 08-2021)
+
+In addition to Starlink, other commercial companies like Amazon
+(Kuiper Network) are planning their own satellite internet.
+
+Also there are existing networks like HugesNet available.
+View the article below comparing all the available choices.
+
+Neuralink Corporation is an American neurotechnology company 
+that is developing implantable brain-computer interfaces (BCIs),
+based in Fremont, California as of 2022. Founded by Elon Musk and
+a team of seven scientists and engineers, Neuralink was launched
+in 2016 and was first publicly reported in March 2017.
+
+Why did Musk found these two companies, considering he sees
+AI as the greatest threat to humanity?
+
+<a href="https://neuralink.com/" target="_parent">neuralink.com</a>
+<a href="https://www.starlink.com/" target="_parent">starlink.com</a>
+<a href="https://en.wikipedia.org/wiki/Starlink" target="_parent">Starlink on Wikipedia</a>
+<a href="https://en.wikipedia.org/wiki/Kuiper_Systems" target="_parent">Kuiper on Wikipedia</a>
+
+Here is an <a href="https://www.cnet.com/home/internet/best-satellite-internet/" target="_parent">article</a> comparing all the choices right now.
+
+<hr/><a name="bj"></a><h3>BlackJack</h3>The Defense Advanced Research Projects Agency (DARPA) is a
+US government agency focusing on developing groundbreaking
+technologies and innovations for national security.
+Founded in 1958 in response to the Soviet satellite Sputnik
+launch, DARPA is known for its research and development in
+various areas, including artificial intelligence, robotics,
+cybersecurity, communication technologies, biotechnology,
+and more.
+
+DARPA is preparing to launch an orbital mesh network similar
+to SpaceX's Starlink called Blackjack.
+
+DARPA’s Blackjack program aims to develop and demonstrate the
+critical elements for a global high-speed network in low Earth
+orbit (LEO) that provides the Department of Defense with highly
+connected, resilient, and persistent coverage.
+
+The program focuses on the development and deployment of small
+satellites in space. The goal is to build a network of cost-effective,
+modular satellites that enable fast and cost-efficient communication
+and data collection in Earth's orbit.
+
+The emphasis should be on the term "data collection": The satellites
+will also be equipped with sensors. What do they observe?
+
+<hr /><a name="con"></a><h3>My Concerns</h3>The author raises (again) the concern that Starlink, Blackjack, and other
+satellite networks are used to implant software in the brains of living
+humans, alongside Wi-Fi and other technologies already widespread in
+industrialized countries. The satellites are used to reach 3rd world 
+countries and other places where there is no internet.
+
+The Author has some friends who experienced strange behavior right
+after Starlink was available in their country.
+
+Also, there could be a link with the COVID-19-jabs, which induced
+graphene to the human body - which reacts to certain wave forms and
+could be programmed remotely.
+
+Please watch <a href="https://rumble.com/v34vpiy-scalar-magicians-pentagram.html" target="_parent">this talk</a>, if it's still online.
+(<a href="https://rumble.com/v34vpiy-scalar-magicians-pentagram.html" target="_parent">https://rumble.com/v34vpiy-scalar-magicians-pentagram.html</a>)
+It was released 5 days after <a href="tec9_02_2023_08_01.html">tec9 #2</a>.
+<hr />
+
+That's it for now.
+
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+var score = 0;
+var lines = 0;
+var frames = 35;
+var framelines = 0;
+var level=0;
+var nexttetromino;
+
+
+function showScore() {
+	document.getElementById("tetrisscore").innerHTML="Level "+level+"<br />&nbsp;"+score+" points<br />"+lines+" lines";
+}
+
+function showNextTetromino()
+{
+	if(nexttetromino)
+	{
+		switch(nexttetromino.name)
+		{
+			case "T": txt="&nbsp;&nbsp;[]&nbsp;&nbsp;<br />[][][]";break;
+			case "I": txt="[][][][]";break;
+			case "J": txt="[]&nbsp;&nbsp;&nbsp;&nbsp;<br/>[][][]";break;
+			case "L": txt="&nbsp;&nbsp;&nbsp;&nbsp;[]<br />[][][]";break;
+			case "S": txt="&nbsp;&nbsp;[][]<br />[][]&nbsp;&nbsp;";break;
+			case "Z": txt="[][]&nbsp;&nbsp;<br />&nbsp;&nbsp;[][]";break;
+			case "O": txt="&nbsp;&nbsp;[][]&nbsp;&nbsp;<br />&nbsp;&nbsp;[][]&nbsp;&nbsp;";break;
+			default: txt=tetromino.name;
+		}
+		document.getElementById("tetrisnext").innerHTML=txt;		
+	}
+}
+
+showScore();
+
+// https://tetris.fandom.com/wiki/Tetris_Guideline
+
+// get a random integer between the range of [min,max]
+// @see https://stackoverflow.com/a/1527820/2124254
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// generate a new tetromino sequence
+// @see https://tetris.fandom.com/wiki/Random_Generator
+function generateSequence() {
+  const sequence = ['I', 'J', 'L', 'O', 'S', 'T', 'Z'];
+
+  while (sequence.length) {
+    const rand = getRandomInt(0, sequence.length - 1);
+    const name = sequence.splice(rand, 1)[0];
+    tetrominoSequence.push(name);
+  }
+}
+
+// get the next tetromino in the sequence
+function getNextTetromino() {
+  if (tetrominoSequence.length === 0) {
+    generateSequence();
+  }
+
+  const name = tetrominoSequence.pop();
+  const matrix = tetrominos[name];
+
+  // I and O start centered, all others start in left-middle
+  const col = playfield[0].length / 2 - Math.ceil(matrix[0].length / 2);
+
+  // I starts on row 21 (-1), all others start on row 22 (-2)
+  const row = name === 'I' ? -1 : -2;
+
+  return {
+    name: name,      // name of the piece (L, O, etc.)
+    matrix: matrix,  // the current rotation matrix
+    row: row,        // current row (starts offscreen)
+    col: col         // current col
+  };
+}
+
+// rotate an NxN matrix 90deg
+// @see https://codereview.stackexchange.com/a/186834
+function rotate(matrix) {
+  const N = matrix.length - 1;
+  const result = matrix.map((row, i) =>
+    row.map((val, j) => matrix[N - j][i])
+  );
+
+  return result;
+}
+
+// check to see if the new matrix/row/col is valid
+function isValidMove(matrix, cellRow, cellCol) {
+  for (let row = 0; row < matrix.length; row++) {
+    for (let col = 0; col < matrix[row].length; col++) {
+      if (matrix[row][col] && (
+          // outside the game bounds
+          cellCol + col < 0 ||
+          cellCol + col >= playfield[0].length ||
+          cellRow + row >= playfield.length ||
+          // collides with another piece
+          playfield[cellRow + row][cellCol + col])
+        ) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+// place the tetromino on the playfield
+function placeTetromino() {
+  for (let row = 0; row < tetromino.matrix.length; row++) {
+    for (let col = 0; col < tetromino.matrix[row].length; col++) {
+      if (tetromino.matrix[row][col]) {
+
+        // game over if piece has any part offscreen
+        if (tetromino.row + row < 0) {
+          return showGameOver();
+        }
+
+        playfield[tetromino.row + row][tetromino.col + col] = tetromino.name;
+      }
+    }
+  }
+
+  // check for line clears starting from the bottom and working our way up
+  var pt=0;
+  for (let row = playfield.length - 1; row >= 0; ) {
+    if (playfield[row].every(cell => !!cell)) {
+      pt+=1;
+      pt*=2;
+      pt+=level;
+      lines+=1;
+      framelines+=1;
+      // maybe speed up the game
+      if(framelines>=10 && frames>=12)
+      {
+		framelines=0;
+		level+=1;
+		frames-=2;
+      }
+      // drop every row above this one
+      for (let r = row; r >= 0; r--) {
+        for (let c = 0; c < playfield[r].length; c++) {
+          playfield[r][c] = playfield[r-1][c];
+        }
+      }
+    }
+    else {
+      row--;
+    }
+  }
+  // there were points made
+  if(pt>0)
+  {
+	console.log("+"+pt+" POINTS");
+	score+=pt;
+	showScore();
+  }
+
+  tetromino=nexttetromino;
+  nexttetromino = getNextTetromino();
+  showNextTetromino()
+}
+
+// show the game over screen
+function showGameOver() {
+  cancelAnimationFrame(rAF);
+  gameOver = true;
+
+  context.fillStyle = 'black';
+  context.globalAlpha = 0.75;
+  context.fillRect(0, canvas.height / 2 - 15, canvas.width, 30);
+
+  context.globalAlpha = 1;
+  context.fillStyle = 'white';
+  context.font = '18px monospace';
+  context.textAlign = 'center';
+  context.textBaseline = 'middle';
+  context.fillText('GAME OVER!', canvas.width / 2, canvas.height / 2);
+}
+
+const canvas = document.getElementById('game');
+const context = canvas.getContext('2d');
+const grid = 16;
+const tetrominoSequence = [];
+
+// keep track of what is in every cell of the game using a 2d array
+// tetris playfield is 10x20, with a few rows offscreen
+const playfield = [];
+
+// populate the empty state
+for (let row = -2; row < 20; row++) {
+  playfield[row] = [];
+
+  for (let col = 0; col < 10; col++) {
+    playfield[row][col] = 0;
+  }
+}
+
+// how to draw each tetromino
+// @see https://tetris.fandom.com/wiki/SRS
+const tetrominos = {
+  'I': [
+    [0,0,0,0],
+    [1,1,1,1],
+    [0,0,0,0],
+    [0,0,0,0]
+  ],
+  'J': [
+    [1,0,0],
+    [1,1,1],
+    [0,0,0],
+  ],
+  'L': [
+    [0,0,1],
+    [1,1,1],
+    [0,0,0],
+  ],
+  'O': [
+    [1,1],
+    [1,1],
+  ],
+  'S': [
+    [0,1,1],
+    [1,1,0],
+    [0,0,0],
+  ],
+  'Z': [
+    [1,1,0],
+    [0,1,1],
+    [0,0,0],
+  ],
+  'T': [
+    [0,1,0],
+    [1,1,1],
+    [0,0,0],
+  ]
+};
+
+// color of each tetromino
+const colors = {
+  'I': 'cyan',
+  'O': 'yellow',
+  'T': '#aa00FF',
+  'S': '#66ff66',
+  'Z': 'red',
+  'J': '#6699FF',
+  'L': 'orange'
+};
+
+let count = 0;
+let tetromino = getNextTetromino();
+let rAF = null;  // keep track of the animation frame so we can cancel it
+let gameOver = false;
+
+// game loop
+function loop() {
+  rAF = requestAnimationFrame(loop);
+  context.clearRect(0,0,canvas.width,canvas.height);
+
+  // draw the playfield
+  txt="<b>%%%%%%%%%%%%%%%%%%%%%%<br />";
+  var tetro=0;
+  for (let row = 0; row < 20; row++) 
+  {
+    txt+="%";	
+    for (let col = 0; col < 10; col++) 
+    {
+	// maybe draw [] for actual tetromino
+	tetro=0;
+	if(row>=tetromino.row && row-tetromino.row<tetromino.matrix.length)
+	{
+		if(col>=tetromino.col && col-tetromino.col<tetromino.matrix[0].length)
+		{
+			color = colors[tetromino.name]
+			tetro=1;
+			if(tetromino.matrix[row-tetromino.row][col-tetromino.col])
+			{
+				txt+='<font color="'+color+'">[]</font>';
+			}else{
+				if(playfield[row][col])
+				{
+					// maybe draw part of the playfield here
+			      		const name = playfield[row][col];
+					color = colors[name];
+					txt+='<font color="'+color+'">[]</font>';
+				}else{
+					// else draw "nothing"
+					txt+=".&nbsp";
+				}
+			}
+		}
+	}
+
+	// else draw playfield
+	if(!tetro)
+	{
+		if (playfield[row][col]) 
+		{
+	      		const name = playfield[row][col];
+		        //context.fillStyle = colors[name];
+
+        		// drawing 1 px smaller than the grid creates a grid effect
+		        // context.fillRect(col * grid, row * grid, grid-1, grid-1);
+			// draw a block
+			txt+="<font color=\""+colors[name]+"\">[]</font>";
+		}else{
+			// draw no block
+			txt+=".&nbsp";
+		}
+	}
+    }
+    txt+="%<br />";
+  }
+  txt+="%%%%%%%%%%%%%%%%%%%%%%</b>"
+
+  document.getElementById("gamediv").innerHTML=txt;
+
+  // draw the active tetromino
+  if (tetromino) {
+
+    // tetromino falls every 35 frames
+    if (++count > frames) {
+      tetromino.row++;
+      count = 0;
+
+      // place piece if it runs into anything
+      if (!isValidMove(tetromino.matrix, tetromino.row, tetromino.col)) {
+        tetromino.row--;
+        placeTetromino();
+      }
+    }
+  }
+}
+
+// listen to keyboard events to move the active tetromino
+document.addEventListener('keydown', function(e) {
+  if (gameOver) return;
+
+  // left and right arrow keys (move) a d
+  if (e.which === 65 || e.which === 68) {
+    const col = e.which === 65
+      ? tetromino.col - 1
+      : tetromino.col + 1;
+
+    if (isValidMove(tetromino.matrix, tetromino.row, col)) {
+      tetromino.col = col;
+    }
+  }
+
+  // up arrow key (rotate) w
+  if (e.which === 87) {
+    const matrix = rotate(tetromino.matrix);
+    if (isValidMove(matrix, tetromino.row, tetromino.col)) {
+      tetromino.matrix = matrix;
+    }
+  }
+
+  // down arrow key (drop) s
+  if(e.which === 83) {
+    const row = tetromino.row + 1;
+
+    if (!isValidMove(tetromino.matrix, row, tetromino.col)) {
+      tetromino.row = row - 1;
+
+      placeTetromino();
+      return;
+    }
+
+    tetromino.row = row;
+  }
+});
+
+// start the game
+nexttetromino=getNextTetromino();
+showNextTetromino();
+rAF = requestAnimationFrame(loop);
+
+// Hare Krishna Hare Krishna Krishna Krishna Hare Hare Hare Rama Hare Rama Rama Rama Hare Hare
+</script>
+
+
+<a href="https://benis-bastelschuppen.github.io/TEC9" target="_parent">http://tec9.ftp.sh</a>
+
+</pre>
+</body>
